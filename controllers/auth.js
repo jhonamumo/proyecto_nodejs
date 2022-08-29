@@ -30,7 +30,7 @@ var controller = {
             let update = {
                 user_id: usuario.id,
                 jwt: access_token
-            };
+            }; 
             
             Sessions.findOneAndUpdate({user_id: usuario.id}, update, {upsert: true, new:true}, (err, sessionsUpdate) => {
                 if(err) return res.status(500).json({message: err});
