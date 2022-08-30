@@ -7,6 +7,7 @@ var WelcomeController = require('../controllers/welcome');
 var AlumnosController = require('../controllers/alumnos');
 var AuthController = require('../controllers/auth');
 var ProfesoresController = require('../controllers/profesores');
+var UsuarioController = require('../controllers/usuarios');
 var userProtectUrl = require('../middlewares/authUser').userProtecUrl;
 
 //Bienvenida
@@ -52,5 +53,11 @@ api.post('/profesor', userProtectUrl, [
 ], ProfesoresController.crear_profesor);
 api.put('/profesor/:n_lista', ProfesoresController.update_profesor);
 api.delete('/profesor/:n_lista', ProfesoresController.delete_profesor);
+
+//Usuario
+api.post('/usuario', userProtectUrl, [
+    body('mail').not().isEmpty(),
+    body('pass').not().isEmpty()
+], UsuarioController.crear_usuario);
 
 module.exports = api;
